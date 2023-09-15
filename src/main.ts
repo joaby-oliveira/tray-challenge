@@ -1,10 +1,9 @@
 import * as dotenv from "dotenv";
+import { Env } from "./Env";
 dotenv.config();
 
 async function sendMessage() {
-  console.log(process.env.WHATSAPP_API_URL)
-  console.log(process.env.WHATSAPP_API_TOKEN)
-  const responseRaw = await fetch(process.env.WHATSAPP_API_URL ?? "", {
+  const responseRaw = await fetch(Env.get("WHATSAPP_API_TOKEN"), {
     method: "POST",
     body: JSON.stringify({
       phone: "+5514981010735",
@@ -12,7 +11,7 @@ async function sendMessage() {
     }),
     headers: {
       "Content-Type": "application/json",
-      Token: process.env.WHATSAPP_API_TOKEN ?? "",
+      Token: Env.get("WHATSAPP_API_TOKEN"),
     },
   });
 
@@ -21,4 +20,4 @@ async function sendMessage() {
   console.log(response);
 }
 
-sendMessage()
+sendMessage();
