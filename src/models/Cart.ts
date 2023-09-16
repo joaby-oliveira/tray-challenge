@@ -1,18 +1,19 @@
 export interface Cart {
-  email: string
-  phone: string
-  product_name: string
-  quantity: string
-  price: string
-  product_url: ProductUrl
-  product_image: ProductImage
+  email: string;
+  name: string;
+  phone: string;
+  product_name: string;
+  quantity: string;
+  price: string;
+  product_url: ProductUrl;
+  product_image: ProductImage;
 }
 
 export interface ProductUrl {
-  https: string
+  https: string;
 }
 
 export interface ProductImage {
-  http: string
-  https: string
+  http: string;
+  https: string;
 }

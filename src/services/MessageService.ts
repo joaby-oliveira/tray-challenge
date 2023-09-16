@@ -1,23 +1,20 @@
+import { Cart } from "../models";
 import { Env } from "../utils/Env";
 
 export class MessageService {
-  private token!: string;
-  private url!: string;
+  private token: string = Env.get("WHATSAPP_API_TOKEN");
+  private url: string = Env.get("WHATSAPP_API_URL");
 
-  constructor(token: string, url: string) {
-    this.token = token;
-    this.url = url;
-  }
-  public async sendMessage() {
-    const responseRaw = await fetch(Env.get("WHATSAPP_API_URL"), {
+  public async sendMessage(cart: Cart) {
+    const responseRaw = await fetch(this.url, {
       method: "POST",
       body: JSON.stringify({
         phone: "+5514981010735",
-        message: "Hello, World!",
+        message: `Olá, ${cart.name}! Finalize sua compra do ${cart.product_name}. Total: ${cart.price}`,
       }),
       headers: {
         "Content-Type": "application/json",
-        Token: Env.get("WHATSAPP_API_TOKEN"),
+        Token: this.token,
       },
     });
 

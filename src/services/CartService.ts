@@ -12,9 +12,15 @@ export class CartService {
         method: "GET",
       });
 
-      const response: Cart[] = await responseRaw.json();
+      const response = await responseRaw.json();
 
-      return response;
+      if (!response) {
+        return [];
+      }
+
+      const carts: Cart[] = response.map((cart: { Cart: Cart }) => cart.Cart);
+
+      return carts;
     } catch (error) {
       return [];
     }
