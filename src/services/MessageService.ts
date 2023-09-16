@@ -1,4 +1,4 @@
-import { Env } from "./utils/Env";
+import { Env } from "../utils/Env";
 
 export class MessageService {
   private token!: string;
