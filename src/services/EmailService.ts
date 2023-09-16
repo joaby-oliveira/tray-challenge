@@ -4,39 +4,29 @@ import { Env } from "../utils/Env";
 export class EmailService {
   private username: string = Env.get("MAIL_USERNAME");
   private pass: string = Env.get("MAIL_PASSWORD");
-  private clientId: string = Env.get("OAUTH_CLIENTID");
-  private clientSecret: string = Env.get("OAUTH_CLIENT_SECRET");
-  private token: string = Env.get("OAUTH_REFRESH_TOKEN");
+  private transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    requireTLS: true,
+    auth: {
+      user: this.username,
+      pass: this.pass,
+    },
+  });
 
-  public async sendMail() {
-    let transporter = nodemailer.createTransport({
-      host: "gmail",
-      port: 587,
-      secure: false,
-      requireTLS: true,
-      auth: {
-        user: this.username,
-        pass: this.pass,
-        clientId: this.clientId,
-        clientSecret: this.clientSecret,
-        refreshToken: this.token
-      },
-      logger: true,
-    });
-
-    let mailOptions = {
-      from: "ichacaramarketplace@gmail.com",
-      to: "ichacaramarketplace@gmail.com",
-      subject: "Ei fulano, acho que você esqueceu de alguma coisa!",
-      text: "",
-    };
-
-    transporter.sendMail(mailOptions, function (err, data) {
+  sendEmail(mailOptions: {
+    from: string;
+    to: string;
+    subject: string;
+    text: string;
+  }) {
+    return this.transporter.sendMail(mailOptions, function (err, data) {
       if (err) {
-        console.log("Error " + err);
-      } else {
-        console.log("Email sent successfully");
+        console.log("Erro: " + err);
+        return;
       }
+      console.log("Email enviado com sucesso");
     });
   }
 }
