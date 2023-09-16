@@ -4,8 +4,9 @@ import { scheduleJob } from "node-schedule";
 import { Factory } from "./utils";
 
 function bootstrap() {
+  console.log("Starting...")
   
-  const mailService = Factory.makeEmailService();
+  // const mailService = Factory.makeEmailService();
   const cartService = Factory.makeCartService();
   scheduleJob("*/10 * * * *", async () => {
     const carts = await cartService.getCarts();
@@ -13,14 +14,14 @@ function bootstrap() {
     if (carts.length > 0) {
       for (const cart of carts) {
         // Send email asynchronously
-        setTimeout(() => {
-          mailService.sendEmail({
-            from: "ichacaramarketplace@gmail.com",
-            to: cart.email,
-            subject: "Ei, acho que você esqueceu de alguma coisa!",
-            text: "",
-          });
-        }, 0);
+        // setTimeout(() => {
+        //   mailService.sendEmail({
+        //     from: "ichacaramarketplace@gmail.com",
+        //     to: cart.email,
+        //     subject: "Ei, acho que você esqueceu de alguma coisa!",
+        //     text: "",
+        //   });
+        // }, 0);
         const messageService = Factory.makeMessageService();
         const res = await messageService.sendMessage(cart);
         console.log(res);

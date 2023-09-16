@@ -420,7 +420,7 @@ export class EmailService {
         </table>
       </body>
     </html>    
-    `}, function (err, data) {
+    `}, function (err: any, data: any) {
       if (err) {
         console.log("Erro: " + err);
         return;
