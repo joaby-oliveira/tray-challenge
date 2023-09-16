@@ -10,7 +10,14 @@ export class MessageService {
       method: "POST",
       body: JSON.stringify({
         phone: "+5514981010735",
-        message: `Olá, ${cart.name}! Finalize sua compra do ${cart.product_name}. Total: ${cart.price}`,
+        message: `
+        Ei, {{ contact.name || psiu }}! 
+        Acho que você esqueceu de alguma coisa...
+        \n\nNão acredito que você deixou escapar esses produtos no seu carrinho 👌😭.
+        \n\nVamos te dar um descontinho especial por eles, mas tem que ser até o dia !
+        \n\nSegue a lista dos produtos selecionados por você:
+        \n\n👉 ${ cart.product_name } - ${ cart.price } - ${ cart.product_url }
+        `,
       }),
       headers: {
         "Content-Type": "application/json",
