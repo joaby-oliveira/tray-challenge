@@ -16,7 +16,7 @@ export class MessageService {
         \n\nNão acredito que você deixou escapar esses produtos no seu carrinho 👌😭.
         \n\nVamos te dar um descontinho especial por eles, mas tem que ser até o dia !
         \n\nSegue a lista dos produtos selecionados por você:
-        \n\n👉 ${ cart.product_name } - ${ cart.price } - ${ cart.product_url }
+        \n\n👉 ${cart.product_name} - ${cart.price} - ${cart.product_url.https}
         `,
       }),
       headers: {

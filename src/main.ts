@@ -5,7 +5,7 @@ import { CartService } from "./services/CartService";
 import { Factory } from "./utils";
 
 function bootstrap() {
-  scheduleJob("*/2 * * * *", async () => {
+  scheduleJob("*/30 * * * * *", async () => {
     const cartService = Factory.makeCartService();
 
     const carts = await cartService.getCarts();
