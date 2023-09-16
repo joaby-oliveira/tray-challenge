@@ -1,6 +1,5 @@
 export interface Cart {
   email: string;
-  name: string;
   phone: string;
   product_name: string;
   quantity: string;
